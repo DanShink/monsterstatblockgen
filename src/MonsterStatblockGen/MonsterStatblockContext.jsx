@@ -10,7 +10,7 @@ function useState() {
 }
 
 export function useMonsterStatblockContext() {
-	const state = useState();
+	const state = React.useContext(MonsterStatblockContext);
 	return state;
 }
 
