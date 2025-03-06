@@ -8,6 +8,13 @@ Run:
 npm install
 npm run dev
 ```
+
+Update Github Pages:
+
+```bash
+npm run deploy
+```
+
 ## The idea behind the example
 
 This example uses [Vite.js](https://github.com/vitejs/vite).
