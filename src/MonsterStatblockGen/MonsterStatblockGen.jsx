@@ -5,6 +5,7 @@ import {
 	useMonsterStatblockContext,
 	MonsterStatBlockContextProvider,
 } from "./MonsterStatblockContext";
+import MonsterStatblockTabs from "./MonsterStatblockTabs";
 
 function MonsterStatblockGenWithContext() {
 	const values = useMonsterStatblockContext();
@@ -20,8 +21,7 @@ function MonsterStatblockGenWithContext() {
 			>
 				Monster Statblock Generator for DC20
 			</Typography>
-			<div>CONTENT</div>
-			<div>Name: {name}</div>
+			<MonsterStatblockTabs />
 			<ProTip />
 		</React.Fragment>
 	);
