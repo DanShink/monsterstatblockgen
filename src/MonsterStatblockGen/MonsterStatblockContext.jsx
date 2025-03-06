@@ -4,8 +4,9 @@ const MonsterStatblockContext = React.createContext();
 
 function useState() {
 	const [name, setName] = React.useState("");
+	const [className, setClassName] = React.useState("");
 
-	return { name, setName };
+	return { name, setName, className, setClassName };
 }
 
 export function useMonsterStatblockContext() {
