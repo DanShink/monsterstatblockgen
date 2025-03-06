@@ -1,8 +1,15 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import ProTip from "../ProTip";
+import {
+	useMonsterStatblockContext,
+	MonsterStatBlockContextProvider,
+} from "./MonsterStatblockContext";
 
-export default function MonsterStatblockGen() {
+function MonsterStatblockGenWithContext() {
+	const values = useMonsterStatblockContext();
+	const { name } = values;
+	console.log(values);
 	return (
 		<React.Fragment>
 			<Typography
@@ -14,7 +21,16 @@ export default function MonsterStatblockGen() {
 				Monster Statblock Generator for DC20
 			</Typography>
 			<div>CONTENT</div>
+			<div>Name: {name}</div>
 			<ProTip />
 		</React.Fragment>
+	);
+}
+
+export default function MonsterStatblockGen() {
+	return (
+		<MonsterStatBlockContextProvider>
+			<MonsterStatblockGenWithContext />
+		</MonsterStatBlockContextProvider>
 	);
 }
