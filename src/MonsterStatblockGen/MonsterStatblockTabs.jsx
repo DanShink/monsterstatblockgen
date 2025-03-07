@@ -1,11 +1,14 @@
 import React from "react";
 import { Tabs, Tab } from "@mui/material";
 import Basics from "./MonsterStatblockTabs/Basics";
+import Stats from "./MonsterStatblockTabs/Stats";
 
 function MonsterStatBlockTabLogic({ step }) {
 	switch (step) {
 		case "Basics":
 			return <Basics />;
+		case "Stats":
+			return <Stats />;
 		default:
 			return <div>Unrecognized Tab</div>;
 	}
