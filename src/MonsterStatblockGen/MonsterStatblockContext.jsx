@@ -2,6 +2,30 @@ import React from "react";
 
 const MonsterStatblockContext = React.createContext();
 
+/**
+ * @typedef {Object} MonsterStatBlockState
+ * @param {String} name Name of the monster
+ * @param {String} size Size of the monster
+ * @param {String} type Type of monster
+ * @param {Number} level Monster Level
+ * @param {String} category Category of monster
+ * @param {Boolean} apex Is the monster an apex?
+ * @param {Number} hp Hit points of the monster
+ * @param {Number} mig Might of the monster
+ * @param {Number} agl Agility of the monster
+ * @param {Number} cha Charisma of the monster
+ * @param {Number} int Intellect of the monster
+ * @param {Boolean} migprof Proficient in Might?
+ * @param {Boolean} aglprof Proficient in Agility?
+ * @param {Boolean} chaprof Proficient in Charisma?
+ * @param {Boolean} intprof Proficient in Intellect?
+ * @param {Object.<string, string>} resistances Monster Resistances
+ */
+
+/**
+ * useState hook for managing monster stat block state
+ * @returns {MonsterStatBlockState}
+ */
 function useState() {
 	const [name, setName] = React.useState("");
 	const [size, setSize] = React.useState("Medium");
@@ -9,7 +33,7 @@ function useState() {
 	const [level, setLevel] = React.useState(0);
 	const [category, setCategory] = React.useState("Minion");
 	const [apex, setApex] = React.useState(false);
-	const [hp, setHp] = React.useState("");
+	const [hp, setHp] = React.useState(0);
 	const [mig, setMig] = React.useState(0);
 	const [agl, setAgl] = React.useState(0);
 	const [cha, setCha] = React.useState(0);
@@ -59,6 +83,10 @@ function useState() {
 	};
 }
 
+/**
+ * Returns the state object
+ * @returns {MonsterStatBlockState} Monster Stat Block State Object
+ */
 export function useMonsterStatblockContext() {
 	const state = React.useContext(MonsterStatblockContext);
 	return state;
