@@ -99,6 +99,13 @@ function useState() {
 	distance:0,
   }*/
 	//features page
+	const [features, setFeatures] = React.useState([]);
+	/* Expected objects to be pushed: {
+ 	feature:"",
+	description:"", 
+  }
+
+  */
 
 	return {
 		name,
