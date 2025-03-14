@@ -19,7 +19,22 @@ const MonsterStatblockContext = React.createContext();
  * @param {Boolean} aglprof Proficient in Agility?
  * @param {Boolean} chaprof Proficient in Charisma?
  * @param {Boolean} intprof Proficient in Intellect?
+ * @param {Number} ad Active Defense
+ * @param {Number} adBonus Active Defense Bonus
+ * @param {Number} pd Passive Defense
+ * @param {Number} pdBonus Passive Defense Bonus
+ * @param {Number} pdr Physical Damage Reduction
+ * @param {Number} edr Elemental Damage Reduction
+ * @param {Number} mdr Mystical Damage Reduction
  * @param {Object.<string, string>} resistances Monster Resistances
+ * @param {Object.<string, string>} vulnerabilities Monster Vulnerabilities
+ * @param {Array} immunities Monster Immunities
+ * @param {Array} conditionImmunities Monster Condition Immunities
+ * @param {Array} skills Monster Skills
+ * @param {Array} senses Monster Senses
+ * @param {Array} languages Monster Languages
+ * @param {Array} otherSpeeds Monster Other Speeds
+ * @param {Array} features Monster Features
  */
 
 /**
@@ -44,13 +59,13 @@ function useState() {
 	const [aglprof, setAglprof] = React.useState(false);
 	const [chaprof, setChaprof] = React.useState(false);
 	const [intprof, setIntprof] = React.useState(false);
-	const [AD, setAD] = React.useState(10);
-	const [ADbonus, setADbonus] = React.useState(0);
-	const [PD, setPD] = React.useState(10);
-	const [PDbonus, setPDbonus] = React.useState(0);
-	const [PDR, setPDR] = React.useState(0); //physical damage reduction
-	const [EDR, setEDR] = React.useState(0); //elemental damage reduction
-	const [MDR, setMDR] = React.useState(0); //mystical damage reduction
+	const [ad, setAd] = React.useState(10);
+	const [adBonus, setAdBonus] = React.useState(0);
+	const [pd, setPd] = React.useState(10);
+	const [pdBonus, setPdBonus] = React.useState(0);
+	const [pdr, setPdr] = React.useState(0); //physical damage reduction
+	const [edr, setEdr] = React.useState(0); //elemental damage reduction
+	const [mdr, setMdr] = React.useState(0); //mystical damage reduction
 	//info page
 	const [resistances, setResistances] = React.useState({
 		bludgeoning: "0",
