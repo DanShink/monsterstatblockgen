@@ -4,37 +4,37 @@ const MonsterStatblockContext = React.createContext();
 
 /**
  * @typedef {Object} MonsterStatBlockState
- * @param {String} name Name of the monster
- * @param {String} size Size of the monster
- * @param {String} type Type of monster
- * @param {Number} level Monster Level
- * @param {String} category Category of monster
- * @param {Boolean} apex Is the monster an apex?
- * @param {Number} hp Hit points of the monster
- * @param {Number} mig Might of the monster
- * @param {Number} agl Agility of the monster
- * @param {Number} cha Charisma of the monster
- * @param {Number} int Intellect of the monster
- * @param {Boolean} migprof Proficient in Might?
- * @param {Boolean} aglprof Proficient in Agility?
- * @param {Boolean} chaprof Proficient in Charisma?
- * @param {Boolean} intprof Proficient in Intellect?
- * @param {Number} ad Active Defense
- * @param {Number} adBonus Active Defense Bonus
- * @param {Number} pd Passive Defense
- * @param {Number} pdBonus Passive Defense Bonus
- * @param {Number} pdr Physical Damage Reduction
- * @param {Number} edr Elemental Damage Reduction
- * @param {Number} mdr Mystical Damage Reduction
- * @param {Object.<string, string>} resistances Monster Resistances
- * @param {Object.<string, string>} vulnerabilities Monster Vulnerabilities
- * @param {Array} immunities Monster Immunities
- * @param {Array} conditionImmunities Monster Condition Immunities
- * @param {Array} skills Monster Skills
- * @param {Array} senses Monster Senses
- * @param {Array} languages Monster Languages
- * @param {Array} otherSpeeds Monster Other Speeds
- * @param {Array} features Monster Features
+ * @property {String} name Name of the monster
+ * @property {String} size Size of the monster
+ * @property {String} type Type of monster
+ * @property {Number} level Monster Level
+ * @property {String} category Category of monster
+ * @property {Boolean} apex Is the monster an apex?
+ * @property {Number} hp Hit points of the monster
+ * @property {Number} mig Might of the monster
+ * @property {Number} agl Agility of the monster
+ * @property {Number} cha Charisma of the monster
+ * @property {Number} int Intellect of the monster
+ * @property {Boolean} migprof Proficient in Might?
+ * @property {Boolean} aglprof Proficient in Agility?
+ * @property {Boolean} chaprof Proficient in Charisma?
+ * @property {Boolean} intprof Proficient in Intellect?
+ * @property {Number} ad Active Defense
+ * @property {Number} adBonus Active Defense Bonus
+ * @property {Number} pd Passive Defense
+ * @property {Number} pdBonus Passive Defense Bonus
+ * @property {Number} pdr Physical Damage Reduction
+ * @property {Number} edr Elemental Damage Reduction
+ * @property {Number} mdr Mystical Damage Reduction
+ * @property {Object.<string, string>} resistances Monster Resistances
+ * @property {Object.<string, string>} vulnerabilities Monster Vulnerabilities
+ * @property {Array} immunities Monster Immunities
+ * @property {Array} conditionImmunities Monster Condition Immunities
+ * @property {Array} skills Monster Skills
+ * @property {Array} senses Monster Senses
+ * @property {Array} languages Monster Languages
+ * @property {Array} otherSpeeds Monster Other Speeds
+ * @property {Array} features Monster Features
  */
 
 /**
