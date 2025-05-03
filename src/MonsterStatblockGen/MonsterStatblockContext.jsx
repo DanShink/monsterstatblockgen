@@ -15,24 +15,28 @@ const MonsterStatblockContext = React.createContext();
  * @property {Number} agl Agility of the monster
  * @property {Number} cha Charisma of the monster
  * @property {Number} int Intellect of the monster
- * @property {Boolean} migprof Proficient in Might?
- * @property {Boolean} aglprof Proficient in Agility?
- * @property {Boolean} chaprof Proficient in Charisma?
- * @property {Boolean} intprof Proficient in Intellect?
- * @property {Number} ad Active Defense
- * @property {Number} adBonus Active Defense Bonus
- * @property {Number} pd Passive Defense
- * @property {Number} pdBonus Passive Defense Bonus
+ * @property {Number} cm Combat Mastery of the monster (level/2 rounded up)
+ * @property {Number} prime Prime of the monster (highest of mig, agl, cha, & int)
+ * @property {Boolean} migprof Proficient in Might Saves?
+ * @property {Boolean} aglprof Proficient in Agility Saves?
+ * @property {Boolean} chaprof Proficient in Charisma Saves?
+ * @property {Boolean} intprof Proficient in Intellect Saves?
+ * @property {Number} ad Area Defense
+ * @property {Number} adBonus Area Defense Bonus
+ * @property {Number} pd Precision Defense
+ * @property {Number} pdBonus Precision Defense Bonus
  * @property {Number} pdr Physical Damage Reduction
  * @property {Number} edr Elemental Damage Reduction
  * @property {Number} mdr Mystical Damage Reduction
  * @property {Object.<string, string>} resistances Monster Resistances
  * @property {Object.<string, string>} vulnerabilities Monster Vulnerabilities
- * @property {Array} immunities Monster Immunities
- * @property {Array} conditionImmunities Monster Condition Immunities
+ * @property {Array.<string>} immunities Monster Immunities
+ * @property {Array.<string>} conditionImmunities Monster Condition Immunities
+ * @property {Array.<string>} conditionResistances Monster Condition Resistances
+ * @property {Array.<string>} conditionVulnerabilities Monster Condition Vulnerabilities
  * @property {Array} skills Monster Skills
  * @property {Array} senses Monster Senses
- * @property {Array} languages Monster Languages
+ * @property {Array.<string>} languages Monster Languages
  * @property {Array} otherSpeeds Monster Other Speeds
  * @property {Array} features Monster Features
  */
@@ -55,6 +59,8 @@ function useState() {
   const [agl, setAgl] = React.useState(0);
   const [cha, setCha] = React.useState(0);
   const [int, setInt] = React.useState(0);
+  const [cm, setCm] = React.useState(Math.ceil(level / 2));
+  const [prime, setPrime] = React.useState(Math.max(mig, agl, cha, int));
   const [migprof, setMigprof] = React.useState(false);
   const [aglprof, setAglprof] = React.useState(false);
   const [chaprof, setChaprof] = React.useState(false);
@@ -66,6 +72,19 @@ function useState() {
   const [pdr, setPdr] = React.useState(false); //physical damage reduction
   const [edr, setEdr] = React.useState(false); //elemental damage reduction
   const [mdr, setMdr] = React.useState(false); //mystical damage reduction
+
+  React.useEffect(() => {
+    setPd(8 + parseInt(cm) + parseInt(agl) + parseInt(int) + parseInt(adBonus));
+  }, [cm, agl, int, adBonus]);
+  React.useEffect(() => {
+    setAd(8 + parseInt(cm) + parseInt(mig) + parseInt(cha) + parseInt(pdBonus));
+  }, [cm, mig, cha, pdBonus]);
+  React.useEffect(() => {
+    setCm(Math.ceil(level / 2));
+  }, [level]);
+  React.useEffect(() => {
+    setPrime(Math.max(mig, agl, int, cha));
+  }, [mig, agl, int, cha]);
   //info page
   const [resistances, setResistances] = React.useState({
     bludgeoning: "0",
@@ -148,6 +167,8 @@ function useState() {
     setCha,
     int,
     setInt,
+    cm,
+    setCm,
     migprof,
     setMigprof,
     aglprof,
@@ -156,6 +177,14 @@ function useState() {
     setChaprof,
     intprof,
     setIntprof,
+    ad,
+    setAd,
+    adBonus,
+    setAdBonus,
+    pd,
+    setPd,
+    pdBonus,
+    setPdBonus,
     resistances,
     setResistances,
   };

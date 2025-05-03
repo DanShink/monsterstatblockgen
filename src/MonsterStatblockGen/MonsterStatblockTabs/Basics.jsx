@@ -188,7 +188,7 @@ export default function Basics() {
         value={hp}
         size="small"
         placeholder="Enter Monster's HP"
-        onChange={(e) => setHP(e.target.value)}
+        onChange={(e) => setHp(e.target.value)}
         inputProps={{
           step: 1,
           min: 0,
