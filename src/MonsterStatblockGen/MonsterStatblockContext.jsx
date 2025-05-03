@@ -3,13 +3,27 @@ import React from "react";
 const MonsterStatblockContext = React.createContext();
 
 /**
+ * @typedef {Object} Action
+ * @property {Number} apcost
+ * @property {String} name
+ * @property {String} description
+ * @property {String} failure
+ */
+
+export const monsterTypes = {
+  normal: "Normal",
+  apex: "Apex",
+  legendary: "Legendary",
+};
+
+/**
  * @typedef {Object} MonsterStatBlockState
  * @property {String} name Name of the monster
  * @property {String} size Size of the monster
  * @property {String} type Type of monster
  * @property {Number} level Monster Level
  * @property {String} category Category of monster
- * @property {Boolean} apex Is the monster an apex?
+ * @property {String} monsterStatus Is the monster normal, apex, or legendary?
  * @property {Number} hp Hit points of the monster
  * @property {Number} mig Might of the monster
  * @property {Number} agl Agility of the monster
@@ -38,7 +52,14 @@ const MonsterStatblockContext = React.createContext();
  * @property {Array} senses Monster Senses
  * @property {Array.<string>} languages Monster Languages
  * @property {Array} otherSpeeds Monster Other Speeds
- * @property {Array} features Monster Features
+ * @property {Array.<object>} features Monster Features
+ * @property {Number} ap Action Points, usually 4
+ * @property {Number} legendaryAp Legendary Action Points, number per PC, 0 if not a legendary monster
+ * @property {Number} speed Walking speed
+ * @property {Number} check Prime + CM
+ * @property {Number} saveDC 10 + Prime + CM
+ * @property {Array.<Action>} actions
+ * @property {Array.<Action>} reactions
  */
 
 /**
@@ -52,6 +73,7 @@ function useState() {
   const [type, setType] = React.useState("Humanoid");
   const [level, setLevel] = React.useState(0);
   const [category, setCategory] = React.useState("Minion");
+  const [monsterStatus, setMonsterStatus] = React.useState(monsterTypes.normal);
   const [apex, setApex] = React.useState(false);
   //stats page
   const [hp, setHp] = React.useState("");
@@ -155,6 +177,8 @@ function useState() {
     setLevel,
     category,
     setCategory,
+    monsterStatus,
+    setMonsterStatus,
     apex,
     setApex,
     hp,

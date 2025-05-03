@@ -12,7 +12,10 @@ import {
   Checkbox,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useMonsterStatblockContext } from "../MonsterStatblockContext";
+import {
+  monsterTypes,
+  useMonsterStatblockContext,
+} from "../MonsterStatblockContext";
 
 const size_options = [
   "Micro",
@@ -65,8 +68,8 @@ export default function Basics() {
     setLevel,
     category,
     setCategory,
-    apex,
-    setApex,
+    monsterStatus,
+    setMonsterStatus,
     hp,
     setHp,
   } = useMonsterStatblockContext();
@@ -176,13 +179,24 @@ export default function Basics() {
           alignItems: "center",
         }}
       >
-        <Typography id="basics-apex-title">Apex?</Typography>
-        <Checkbox
-          checked={apex}
-          onChange={(e) => setApex(e.target.checked)}
-          inputProps={{ "aria-label": "basics-apex" }}
-          label="Apex"
-        />
+        <Typography id="basics-status-title">Monster Status</Typography>
+        <Select
+          labelId="basics-status-label"
+          id="basics-status"
+          label="Creature Status"
+          value={monsterStatus}
+          onChange={(e) => setMonsterStatus(e.target.value)}
+          sx={{ margin: "0px 20px" }}
+        >
+          {Object.keys(monsterTypes).map((monsterType, index) => (
+            <MenuItem
+              value={monsterTypes[monsterType]}
+              key={monsterTypes[monsterType]}
+            >
+              {monsterTypes[monsterType]}
+            </MenuItem>
+          ))}
+        </Select>
       </Box>
       <Input
         value={hp}
