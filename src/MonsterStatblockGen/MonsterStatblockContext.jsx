@@ -96,7 +96,10 @@ function useState() {
     psychic: "0",
   });
   const [immunities, setImmunities] = React.useState([]); //array of strings
+  const [conditionResistances, setConditionResistances] = React.useState([]); //array of strings
   const [conditionImmunities, setConditionImmunities] = React.useState([]); //array of strings
+  const [conditionVulnerabilities, setConditionVulnerabilities] =
+    React.useState([]); //array of strings
   const [skills, setSkills] = React.useState([]);
   /* Expected objects to be pushed: {
 	skill: "",
