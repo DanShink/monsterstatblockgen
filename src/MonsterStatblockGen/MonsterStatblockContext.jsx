@@ -63,9 +63,9 @@ function useState() {
   const [adBonus, setAdBonus] = React.useState(0);
   const [pd, setPd] = React.useState(10); //precision defense (8 + 1/2 level + AGL + INT + bonus)
   const [pdBonus, setPdBonus] = React.useState(0);
-  const [pdr, setPdr] = React.useState(0); //physical damage reduction
-  const [edr, setEdr] = React.useState(0); //elemental damage reduction
-  const [mdr, setMdr] = React.useState(0); //mystical damage reduction
+  const [pdr, setPdr] = React.useState(false); //physical damage reduction
+  const [edr, setEdr] = React.useState(false); //elemental damage reduction
+  const [mdr, setMdr] = React.useState(false); //mystical damage reduction
   //info page
   const [resistances, setResistances] = React.useState({
     bludgeoning: "0",
