@@ -11,8 +11,24 @@ import {
 } from "@mui/material";
 import { useMonsterStatblockContext } from "../MonsterStatblockContext";
 
+function InputBox({ children }) {
+  return (
+    <Box
+      sx={{
+        width: 600,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
 export default function Stats() {
   const {
+    cm,
     mig,
     setMig,
     agl,
@@ -29,17 +45,18 @@ export default function Stats() {
     setChaprof,
     intprof,
     setIntprof,
+    ad,
+    setAd,
+    adBonus,
+    setAdBonus,
+    pd,
+    setPd,
+    pdBonus,
+    setPdBonus,
   } = useMonsterStatblockContext();
   return (
     <Box component="form" autoComplete="off" sx={{ width: 600 }}>
-      <Box
-        sx={{
-          width: 600,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <InputBox>
         <Typography id="basics-slider-title" sx={{ margin: "15px" }}>
           MIG
         </Typography>
@@ -73,15 +90,8 @@ export default function Stats() {
           inputProps={{ "aria-label": "stats-migprof" }}
           label="MIGprof"
         />
-      </Box>
-      <Box
-        sx={{
-          width: 600,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      </InputBox>
+      <InputBox>
         <Typography id="basics-slider-title" sx={{ margin: "15px" }}>
           AGL
         </Typography>
@@ -115,15 +125,8 @@ export default function Stats() {
           inputProps={{ "aria-label": "stats-aglprof" }}
           label="AGLprof"
         />
-      </Box>
-      <Box
-        sx={{
-          width: 600,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      </InputBox>
+      <InputBox>
         <Typography id="basics-slider-title" sx={{ margin: "15px" }}>
           CHA
         </Typography>
@@ -157,15 +160,8 @@ export default function Stats() {
           inputProps={{ "aria-label": "stats-chaprof" }}
           label="CHAprof"
         />
-      </Box>
-      <Box
-        sx={{
-          width: 600,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      </InputBox>
+      <InputBox>
         <Typography id="basics-slider-title" sx={{ margin: "15px" }}>
           INT
         </Typography>
@@ -199,7 +195,76 @@ export default function Stats() {
           inputProps={{ "aria-label": "stats-intprof" }}
           label="INTprof"
         />
-      </Box>
+      </InputBox>
+      <InputBox>
+        <Box sx={{ margin: "10px 50px" }}>
+          <TextField
+            value={pdBonus}
+            size="small"
+            placeholder="Enter Precision Defense Bonus"
+            onChange={(e) => setPdBonus(e.target.value)}
+            inputProps={{
+              step: 1,
+              min: 0,
+              type: "number",
+              "aria-labelledby": "pdbonus",
+            }}
+          />
+          <Typography id="pdBonus-label" textAlign={"center"} fontSize={"14px"}>
+            Enter Precision Defense Bonus
+          </Typography>
+          <Typography id="pd-total" textAlign={"center"} fontSize={"14px"}>
+            PD ={" "}
+            {8 +
+              parseInt(cm) +
+              parseInt(agl) +
+              parseInt(int) +
+              parseInt(adBonus)}
+          </Typography>
+        </Box>
+        <Box sx={{ margin: "10px 50px" }}>
+          <TextField
+            value={adBonus}
+            size="small"
+            placeholder="Enter Area Defense Bonus"
+            onChange={(e) => setAdBonus(e.target.value)}
+            inputProps={{
+              step: 1,
+              min: 0,
+              type: "number",
+              "aria-labelledby": "adbonus",
+            }}
+          />
+          <Typography id="adBonus-label" textAlign={"center"} fontSize={"14px"}>
+            Enter Area Defense Bonus
+          </Typography>
+          <Typography id="ad-total" textAlign={"center"} fontSize={"14px"}>
+            AD ={" "}
+            {8 +
+              parseInt(cm) +
+              parseInt(mig) +
+              parseInt(cha) +
+              parseInt(adBonus)}
+          </Typography>
+        </Box>
+      </InputBox>
     </Box>
   );
 }
+
+/**
+ *       sx={{
+        width: 600,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+ */
+
+/**
+ *  <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+        />
+ */
