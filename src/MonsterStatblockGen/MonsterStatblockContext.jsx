@@ -1,4 +1,5 @@
 import React from "react";
+import { monsterTypes } from "./constants";
 
 const MonsterStatblockContext = React.createContext();
 
@@ -10,12 +11,6 @@ const MonsterStatblockContext = React.createContext();
  * @property {String} failure
  */
 
-export const monsterTypes = {
-  normal: "Normal",
-  apex: "Apex",
-  legendary: "Legendary",
-};
-
 /**
  * @typedef {Object} MonsterStatBlockState
  * @property {String} name Name of the monster
@@ -23,7 +18,7 @@ export const monsterTypes = {
  * @property {String} type Type of monster
  * @property {Number} level Monster Level
  * @property {String} category Category of monster
- * @property {String} monsterStatus Is the monster normal, apex, or legendary?
+ * @property {monsterTypes} monsterStatus Is the monster normal, apex, or legendary?
  * @property {Number} hp Hit points of the monster
  * @property {Number} mig Might of the monster
  * @property {Number} agl Agility of the monster
@@ -109,18 +104,18 @@ function useState() {
   }, [mig, agl, int, cha]);
   //info page
   const [resistances, setResistances] = React.useState({
-    bludgeoning: "0",
-    piercing: "0",
-    slashing: "0",
-    fire: "0",
-    cold: "0",
-    lightning: "0",
-    poison: "0",
-    corrosion: "0",
-    radiant: "0",
-    umbral: "0",
-    sonic: "0",
-    psychic: "0",
+    bludgeoning: 0,
+    piercing: 0,
+    slashing: 0,
+    fire: 0,
+    cold: 0,
+    lightning: 0,
+    poison: 0,
+    corrosion: 0,
+    radiant: 0,
+    umbral: 0,
+    sonic: 0,
+    psychic: 0,
   });
   const [vulnerabilities, setVulnerabilities] = React.useState({
     bludgeoning: "0",
@@ -163,8 +158,21 @@ function useState() {
  	feature:"",
 	description:"", 
   }
-
   */
+  //actions page
+  const [ap, setAp] = React.useState(4);
+  const [legendaryAp, setLegendaryAp] = React.useState(0);
+  const [speed, setSpeed] = React.useState(5);
+  const [check, setCheck] = React.useState(4);
+  const [saveDC, setSaveDC] = React.useState(10);
+  const [actions, setActions] = React.useState([]);
+  const [reactions, setReactions] = React.useState([]);
+  React.useEffect(() => {
+    setCheck(parseInt(prime) + parseInt(cm));
+  }, [prime, cm]);
+  React.useEffect(() => {
+    setSaveDC(10 + parseInt(prime) + parseInt(cm));
+  }, [prime, cm]);
 
   return {
     name,
@@ -215,6 +223,42 @@ function useState() {
     setVulnerabilities,
     immunities,
     setImmunities,
+    conditionResistances,
+    setConditionResistances,
+    conditionImmunities,
+    setConditionImmunities,
+    conditionVulnerabilities,
+    setConditionVulnerabilities,
+    skills,
+    setSkills,
+    senses,
+    setSenses,
+    languages,
+    setLanguages,
+    otherSpeeds,
+    setOtherSpeeds,
+    features,
+    setFeatures,
+    ap,
+    setAp,
+    legendaryAp,
+    setLegendaryAp,
+    speed,
+    setSpeed,
+    check,
+    setCheck,
+    saveDC,
+    setSaveDC,
+    actions,
+    setActions,
+    reactions,
+    setReactions,
+    pdr,
+    setPdr,
+    edr,
+    setEdr,
+    mdr,
+    setMdr,
   };
 }
 
