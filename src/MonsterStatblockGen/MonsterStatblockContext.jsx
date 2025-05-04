@@ -211,6 +211,10 @@ function useState() {
     setPdBonus,
     resistances,
     setResistances,
+    vulnerabilities,
+    setVulnerabilities,
+    immunities,
+    setImmunities,
   };
 }
 
