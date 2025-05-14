@@ -118,18 +118,18 @@ function useState() {
     psychic: 0,
   });
   const [vulnerabilities, setVulnerabilities] = React.useState({
-    bludgeoning: "0",
-    piercing: "0",
-    slashing: "0",
-    fire: "0",
-    cold: "0",
-    lightning: "0",
-    poison: "0",
-    corrosion: "0",
-    radiant: "0",
-    umbral: "0",
-    sonic: "0",
-    psychic: "0",
+    bludgeoning: 0,
+    piercing: 0,
+    slashing: 0,
+    fire: 0,
+    cold: 0,
+    lightning: 0,
+    poison: 0,
+    corrosion: 0,
+    radiant: 0,
+    umbral: 0,
+    sonic: 0,
+    psychic: 0,
   });
   const [immunities, setImmunities] = React.useState([]); //array of strings
   const [conditionResistances, setConditionResistances] = React.useState([]); //array of strings

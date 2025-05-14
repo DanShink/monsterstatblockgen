@@ -2,50 +2,50 @@ import React from "react";
 import { Tabs, Tab } from "@mui/material";
 import Basics from "./MonsterStatblockTabs/Basics";
 import Stats from "./MonsterStatblockTabs/Stats";
-import Info from "./MonsterStatblockTabs/Info";
+import Info from "./MonsterStatblockTabs/Info/Info";
 
 function MonsterStatBlockTabLogic({ step }) {
-	switch (step) {
-		case "Basics":
-			return <Basics />;
-		case "Stats":
-			return <Stats />;
-		case "Info":
-			return <Info />;
-		default:
-			return <div>Unrecognized Tab</div>;
-	}
+  switch (step) {
+    case "Basics":
+      return <Basics />;
+    case "Stats":
+      return <Stats />;
+    case "Info":
+      return <Info />;
+    default:
+      return <div>Unrecognized Tab</div>;
+  }
 }
 
 const tabs = [
-	{ label: "Basics" },
-	{ label: "Stats" },
-	{ label: "Info" },
-	{ label: "Feature" },
-	{ label: "Actions" },
-	{ label: "Reactions" },
-	{ label: "Import/Export" },
+  { label: "Basics" },
+  { label: "Stats" },
+  { label: "Info" },
+  { label: "Feature" },
+  { label: "Actions" },
+  { label: "Reactions" },
+  { label: "Import/Export" },
 ];
 
 export default function MonsterStatblockTabs() {
-	const [step, setStep] = React.useState("Basics");
+  const [step, setStep] = React.useState("Basics");
 
-	const handleChange = (event, newValue) => {
-		setStep(newValue);
-	};
+  const handleChange = (event, newValue) => {
+    setStep(newValue);
+  };
 
-	return (
-		<React.Fragment>
-			<Tabs
-				value={step}
-				onChange={handleChange}
-				aria-label="monster statblock tabs"
-			>
-				{tabs.map((tab) => (
-					<Tab label={tab.label} key={tab.label} value={tab.label} />
-				))}
-			</Tabs>
-			<MonsterStatBlockTabLogic step={step} />
-		</React.Fragment>
-	);
+  return (
+    <React.Fragment>
+      <Tabs
+        value={step}
+        onChange={handleChange}
+        aria-label="monster statblock tabs"
+      >
+        {tabs.map((tab) => (
+          <Tab label={tab.label} key={tab.label} value={tab.label} />
+        ))}
+      </Tabs>
+      <MonsterStatBlockTabLogic step={step} />
+    </React.Fragment>
+  );
 }

@@ -18,9 +18,9 @@ export const damageTypes = {
   poison: "Poison",
   corrosion: "Corrosion",
   sonic: "Sonic",
+  psychic: "Psychic",
   radiant: "Radiant",
   umbral: "Umbral",
-  psychic: "Psychic",
 };
 
 export const skills = {
@@ -94,3 +94,4 @@ export const languages = {
 };
 
 export const half = "half";
+export const double = "double";
