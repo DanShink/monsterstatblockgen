@@ -4,7 +4,14 @@ import { damageTypes, double } from "../../constants";
 import { Box, TextField, Typography, Checkbox } from "@mui/material";
 
 export default function VulnerabilitiesGenerator() {
-  const { vulnerabilities, setVulnerabilities } = useMonsterStatblockContext();
+  const {
+    resistances,
+    setResistances,
+    vulnerabilities,
+    setVulnerabilities,
+    immunities,
+    setImmunities,
+  } = useMonsterStatblockContext();
   console.log(vulnerabilities);
 
   return (
@@ -20,6 +27,7 @@ export default function VulnerabilitiesGenerator() {
             justifyContent: "start",
             alignItems: "center",
           }}
+          key={index}
         >
           <Typography
             id={`info-vulnerabilities-${vulnerability}`}
@@ -33,7 +41,12 @@ export default function VulnerabilitiesGenerator() {
             placeholder={
               vulnerabilities[vulnerability] === double ? "Double" : null
             }
-            onChange={(e) =>
+            onChange={(e) => {
+              resistances[vulnerability] = 0;
+              setImmunities(
+                immunities.filter((immunity) => immunity !== vulnerability)
+              );
+
               setVulnerabilities((prev) => {
                 const updatedvulnerabilities = {
                   ...prev,
@@ -42,8 +55,8 @@ export default function VulnerabilitiesGenerator() {
                   event.target.value
                 );
                 return updatedvulnerabilities;
-              })
-            }
+              });
+            }}
             inputProps={{
               step: 1,
               min: 0,
@@ -59,7 +72,11 @@ export default function VulnerabilitiesGenerator() {
           </Typography>
           <Checkbox
             checked={vulnerabilities[vulnerability] === double}
-            onChange={() =>
+            onChange={() => {
+              resistances[vulnerability] = 0;
+              setImmunities(
+                immunities.filter((immunity) => immunity !== vulnerability)
+              );
               setVulnerabilities((prev) => {
                 const updatedVulnerabilities = {
                   ...prev,
@@ -67,8 +84,8 @@ export default function VulnerabilitiesGenerator() {
                 updatedVulnerabilities[vulnerability] =
                   prev[vulnerability] === double ? 0 : double;
                 return updatedVulnerabilities;
-              })
-            }
+              });
+            }}
             inputProps={{ "aria-label": "stats-vulnerability" }}
             label="vulnerability"
           />

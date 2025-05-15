@@ -5,7 +5,14 @@ import { damageTypes, half } from "../../constants";
 import { Box, TextField, Typography, Checkbox } from "@mui/material";
 
 export default function ResistancesGenerator() {
-  const { resistances, setResistances } = useMonsterStatblockContext();
+  const {
+    resistances,
+    setResistances,
+    vulnerabilities,
+    setVulnerabilities,
+    immunities,
+    setImmunities,
+  } = useMonsterStatblockContext();
   console.log(resistances);
 
   /**
@@ -28,6 +35,7 @@ export default function ResistancesGenerator() {
             justifyContent: "start",
             alignItems: "center",
           }}
+          key={index}
         >
           <Typography
             id={`info-resistances-${resistance}`}
@@ -39,15 +47,19 @@ export default function ResistancesGenerator() {
             value={resistances[resistance]}
             size="small"
             placeholder={resistances[resistance] === half ? "Half" : null}
-            onChange={(e) =>
+            onChange={(e) => {
+              vulnerabilities[resistance] = 0;
+              setImmunities(
+                immunities.filter((immunity) => immunity !== resistance)
+              );
               setResistances((prev) => {
                 const updatedResistances = {
                   ...prev,
                 };
                 updatedResistances[resistance] = parseInt(event.target.value);
                 return updatedResistances;
-              })
-            }
+              });
+            }}
             inputProps={{
               step: 1,
               min: 0,
@@ -63,7 +75,11 @@ export default function ResistancesGenerator() {
           </Typography>
           <Checkbox
             checked={resistances[resistance] === half}
-            onChange={() =>
+            onChange={() => {
+              vulnerabilities[resistance] = 0;
+              setImmunities(
+                immunities.filter((immunity) => immunity !== resistance)
+              );
               setResistances((prev) => {
                 const updatedResistances = {
                   ...prev,
@@ -71,8 +87,8 @@ export default function ResistancesGenerator() {
                 updatedResistances[resistance] =
                   prev[resistance] === half ? 0 : half;
                 return updatedResistances;
-              })
-            }
+              });
+            }}
             inputProps={{ "aria-label": "stats-resistance" }}
             label="resistance"
           />

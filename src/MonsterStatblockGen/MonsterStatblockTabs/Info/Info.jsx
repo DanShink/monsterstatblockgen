@@ -25,6 +25,7 @@ import {
 
 import VulnerabilitiesGenerator from "./VulnerabilitiesGenerator";
 import ResistancesGenerator from "./ResistancesGenerator";
+import ImmunitiesGenerator from "./ImmunitiesGenerator";
 
 function DamageReduction() {
   const { pdr, setPdr, edr, setEdr, mdr, setMdr } =
@@ -72,18 +73,6 @@ function DamageReduction() {
 }
 
 export default function Info() {
-  const {
-    resistances,
-    setResistances,
-    vulnerabilities,
-    setVulnerabilities,
-    pdr,
-    setPdr,
-    edr,
-    setEdr,
-    mdr,
-    setMdr,
-  } = useMonsterStatblockContext();
   return (
     <Box
       component="form"
@@ -94,33 +83,16 @@ export default function Info() {
       }}
     >
       <DamageReduction />
-      <ResistancesGenerator />
-      <VulnerabilitiesGenerator />
-      <Box>
-        <Typography id="info-immunities-title" fontWeight="bold">
-          Immunities
-        </Typography>
-        <React.Fragment>
-          {Object.keys(damageTypes).map((immunity, index) => (
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-              }}
-            >
-              <Checkbox></Checkbox>
-              <Typography
-                id={`info-immunities-${immunity}`}
-                sx={{ width: "120px" }}
-              >
-                {damageTypes[immunity]}
-              </Typography>
-            </Box>
-          ))}
-        </React.Fragment>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <ResistancesGenerator />
+        <VulnerabilitiesGenerator />
       </Box>
+      <ImmunitiesGenerator />
     </Box>
   );
 }

@@ -251,20 +251,3 @@ export default function Stats() {
     </Box>
   );
 }
-
-/**
- *       sx={{
-        width: 600,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
- */
-
-/**
- *  <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-        />
- */
