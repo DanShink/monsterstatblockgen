@@ -26,6 +26,7 @@ import {
 import VulnerabilitiesGenerator from "./VulnerabilitiesGenerator";
 import ResistancesGenerator from "./ResistancesGenerator";
 import ImmunitiesGenerator from "./ImmunitiesGenerator";
+import ConditionsGenerator from "./ConditionsGenerator";
 
 function DamageReduction() {
   const { pdr, setPdr, edr, setEdr, mdr, setMdr } =
@@ -93,6 +94,7 @@ export default function Info() {
         <VulnerabilitiesGenerator />
       </Box>
       <ImmunitiesGenerator />
+      <ConditionsGenerator />
     </Box>
   );
 }
