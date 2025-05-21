@@ -1,6 +1,6 @@
 import React from "react";
 import { useMonsterStatblockContext } from "../../MonsterStatblockContext";
-import { damageTypes, half, conditions } from "../../constants";
+import { damageTypes, half, conditionTypes } from "../../constants";
 
 import {
   Box,
@@ -11,20 +11,10 @@ import {
   MenuItem,
 } from "@mui/material";
 
-const condition_list = ["Resistance", "Vulnerability", "Immunity"];
+const condition_list = ["None", "Resistance", "Vulnerability", "Immunity"];
 
 export default function ConditionsGenerator() {
-  const {
-    conditionResistances,
-    setConditionResistances,
-    conditionImmunities,
-    setConditionImmunities,
-    conditionVulnerabilities,
-    setConditionVulnerabilities,
-  } = useMonsterStatblockContext();
-  console.log(conditionResistances);
-  console.log(conditionVulnerabilities);
-  console.log(conditionImmunities);
+  const { conditions, setConditions } = useMonsterStatblockContext();
   return (
     <Box>
       <Typography id="info-immunities-title" fontWeight="bold">
@@ -37,7 +27,7 @@ export default function ConditionsGenerator() {
           flexWrap: "wrap",
         }}
       >
-        {Object.keys(conditions).map((condition, index) => (
+        {Object.keys(conditionTypes).map((condition, index) => (
           <Box
             component="div"
             sx={{
@@ -52,14 +42,20 @@ export default function ConditionsGenerator() {
               id={`info-condition-${condition}`}
               sx={{ minWidth: 110 }}
             >
-              {conditions[condition]}
+              {conditionTypes[condition]}
             </Typography>
             <Select
               labelId={`${condition}-dropdown`}
               id={`${condition}-type`}
               label={`${condition}`}
-              value={condition_list}
-              onChange={(e) => {}}
+              value={conditions[condition]}
+              onChange={(e) => {
+                setConditions((prevConditions) => {
+                  const newConditions = { ...prevConditions };
+                  newConditions[condition] = e.target.value;
+                  return newConditions;
+                });
+              }}
             >
               {condition_list.map((option) => (
                 <MenuItem value={option} key={option}>

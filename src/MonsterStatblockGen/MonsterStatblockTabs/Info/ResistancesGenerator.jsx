@@ -13,7 +13,6 @@ export default function ResistancesGenerator() {
     immunities,
     setImmunities,
   } = useMonsterStatblockContext();
-  console.log(resistances);
 
   /**
    * setResistances((prev) => ({

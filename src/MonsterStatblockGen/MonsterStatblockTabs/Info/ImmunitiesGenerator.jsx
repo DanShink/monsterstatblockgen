@@ -13,7 +13,6 @@ export default function ImmunitiesGenerator() {
     immunities,
     setImmunities,
   } = useMonsterStatblockContext();
-  console.log(immunities);
   return (
     <Box>
       <Typography id="info-immunities-title" fontWeight="bold">

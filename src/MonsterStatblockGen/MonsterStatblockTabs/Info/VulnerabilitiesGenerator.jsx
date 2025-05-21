@@ -12,7 +12,6 @@ export default function VulnerabilitiesGenerator() {
     immunities,
     setImmunities,
   } = useMonsterStatblockContext();
-  console.log(vulnerabilities);
 
   return (
     <Box>

@@ -5,10 +5,12 @@ const MonsterStatblockContext = React.createContext();
 
 /**
  * @typedef {Object} Action
+ * @property {String} type
  * @property {Number} apcost
  * @property {String} name
  * @property {String} description
  * @property {String} failure
+ * @property {Array.<Action>} enhancements
  */
 
 /**
@@ -132,14 +134,41 @@ function useState() {
     psychic: 0,
   });
   const [immunities, setImmunities] = React.useState([]); //array of strings
-  const [conditionResistances, setConditionResistances] = React.useState([]); //array of strings
-  const [conditionImmunities, setConditionImmunities] = React.useState([]); //array of strings
-  const [conditionVulnerabilities, setConditionVulnerabilities] =
-    React.useState([]); //array of strings
+  const [conditions, setConditions] = React.useState({
+    blinded: "None",
+    burning: "None",
+    charmed: "None",
+    dazed: "None",
+    deafened: "None",
+    disoriented: "None",
+    doomed: "None",
+    exhaustion: "None",
+    exposed: "None",
+    frightened: "None",
+    hindered: "None",
+    immobilized: "None",
+    impaired: "None",
+    incapacitated: "None",
+    intimiated: "None",
+    invisible: "None",
+    paralyzed: "None",
+    petrified: "None",
+    poisoned: "None",
+    restrained: "None",
+    slowed: "None",
+    stunned: "None",
+    surprised: "None",
+    taunted: "None",
+    terrified: "None",
+    tethered: "None",
+    unconscious: "None",
+    weakened: "None",
+  });
   const [skills, setSkills] = React.useState([]);
   /* Expected objects to be pushed: {
-	skill: "",
-	value: 0,
+	name: "",
+  stat: "",
+	value: 0, [0, 2, 4, 6, 8, 10] + Stat
   }*/
   const [senses, setSenses] = React.useState([]);
   /* Expected objects to be pushed: {
@@ -223,12 +252,8 @@ function useState() {
     setVulnerabilities,
     immunities,
     setImmunities,
-    conditionResistances,
-    setConditionResistances,
-    conditionImmunities,
-    setConditionImmunities,
-    conditionVulnerabilities,
-    setConditionVulnerabilities,
+    conditions,
+    setConditions,
     skills,
     setSkills,
     senses,

@@ -1,14 +1,6 @@
 import React from "react";
 import { useMonsterStatblockContext } from "../../MonsterStatblockContext";
-import {
-  damageTypes,
-  conditions,
-  skills,
-  senses,
-  languages,
-  half,
-  double,
-} from "../../constants";
+import { damageTypes, senses, languages, half, double } from "../../constants";
 
 import {
   Box,

@@ -23,7 +23,7 @@ export const damageTypes = {
   umbral: "Umbral",
 };
 
-export const skills = {
+export const skillTypes = {
   awareness: "Awareness", //Prime
   athletics: "Athletics", //Might
   intimidation: "Intimidation", //Might
@@ -38,7 +38,15 @@ export const skills = {
   survival: "Survival", //Survival
 };
 
-export const conditions = {
+export const masteryLevels = {
+  novice: 2,
+  adept: 4,
+  expert: 6,
+  master: 8,
+  grandmaster: 10,
+};
+
+export const conditionTypes = {
   blinded: "Blinded",
   burning: "Burning",
   charmed: "Charmed",
