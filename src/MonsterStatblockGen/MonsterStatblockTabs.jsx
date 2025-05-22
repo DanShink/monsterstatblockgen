@@ -3,7 +3,7 @@ import { Tabs, Tab } from "@mui/material";
 import Basics from "./MonsterStatblockTabs/Basics";
 import Stats from "./MonsterStatblockTabs/Stats";
 import Info from "./MonsterStatblockTabs/Info/Info";
-import Skills from "./MonsterStatblockTabs/Skills";
+import Skills from "./MonsterStatblockTabs/Skills/Skills";
 
 function MonsterStatBlockTabLogic({ step }) {
   switch (step) {

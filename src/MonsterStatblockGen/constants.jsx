@@ -38,7 +38,17 @@ export const skillTypes = {
   survival: "Survival", //Survival
 };
 
+export const masteryTypes = {
+  na: "NA",
+  novice: "Novice",
+  adept: "Adept",
+  expert: "Expert",
+  master: "Master",
+  grandmaster: "Grandmaster",
+};
+
 export const masteryLevels = {
+  na: 0, //default
   novice: 2,
   adept: 4,
   expert: 6,
@@ -83,7 +93,7 @@ export const senses = {
   truesight: "Truesight",
   passive_awareness: 10,
 };
-export const languages = {
+export const languageTypes = {
   common: "Common",
   common_sign: "Common Sign",
   human: "Human",

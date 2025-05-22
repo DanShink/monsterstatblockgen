@@ -1,5 +1,5 @@
 import React from "react";
-import { monsterTypes } from "./constants";
+import { monsterTypes, masteryLevels } from "./constants";
 
 const MonsterStatblockContext = React.createContext();
 
@@ -164,23 +164,35 @@ function useState() {
     unconscious: "None",
     weakened: "None",
   });
-  const [skills, setSkills] = React.useState([]);
-  /* Expected objects to be pushed: {
-	name: "",
-  stat: "",
-	value: 0, [0, 2, 4, 6, 8, 10] + Stat
-  }*/
-  const [senses, setSenses] = React.useState([]);
-  /* Expected objects to be pushed: {
-	sense: "",
-	value: 0,
-  }*/
+  const [skills, setSkills] = React.useState({
+    awareness: masteryLevels.na, //Prime
+    athletics: masteryLevels.na, //Might
+    intimidation: masteryLevels.na, //Might
+    acrobatics: masteryLevels.na, //Agility
+    trickery: masteryLevels.na, //Agility
+    stealth: masteryLevels.na, //Agility
+    animal: masteryLevels.na, //Charisma
+    inluence: masteryLevels.na, //Charisma
+    insight: masteryLevels.na, //Charisma
+    investigation: masteryLevels.na, //Intelligence
+    medicine: masteryLevels.na, //Medicine
+    survival: masteryLevels.na, //Survival
+  });
+  const [senses, setSenses] = React.useState({
+    darkvision: 0,
+    tremorsense: 0,
+    blindsight: 0,
+    truesight: 0,
+  });
   const [languages, setLanguages] = React.useState([]); //array of strings
-  const [otherSpeeds, setOtherSpeeds] = React.useState([]);
-  /* Expected objects to be pushed: {
-	type:"",
-	distance:0,
-  }*/
+  const [otherSpeeds, setOtherSpeeds] = React.useState({
+    fly: "0",
+    swim: "0",
+    glide: "0",
+    climb: "0",
+    burrow: "0",
+  });
+
   //features page
   const [features, setFeatures] = React.useState([]);
   /* Expected objects to be pushed: {
