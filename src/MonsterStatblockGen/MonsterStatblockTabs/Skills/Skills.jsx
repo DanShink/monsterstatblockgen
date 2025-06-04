@@ -13,17 +13,10 @@ import { skillTypes, masteryTypes, languageTypes } from "../../constants";
 import SkillsGenerator from "./SkillsGenerator";
 
 export default function Skills({}) {
-  const {
-    senses,
-    setSenses,
-    languages,
-    setLanguages,
-    otherSpeeds,
-    setOtherSpeeds,
-  } = useMonsterStatblockContext();
+  const { senses, setSenses, languages, setLanguages, speeds, setSpeeds } =
+    useMonsterStatblockContext();
   return (
     <Box>
-      <SkillsGenerator />
       <Typography id="info-Senses-title" fontWeight="bold">
         Languages Known
       </Typography>
@@ -45,6 +38,7 @@ export default function Skills({}) {
           </MenuItem>
         ))}
       </Select>
+      <SkillsGenerator />
     </Box>
   );
 }

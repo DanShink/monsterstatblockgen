@@ -86,13 +86,22 @@ export const conditionTypes = {
   unconscious: "Unconscious",
   weakened: "Weakened",
 };
-export const senses = {
+export const senseTypes = {
   darkvision: "Darkvision",
   tremorsense: "Tremorsense",
   blindsight: "Blindsight",
   truesight: "Truesight",
-  passive_awareness: 10,
 };
+
+export const speedTypes = {
+  ground: "Ground",
+  fly: "Fly",
+  swim: "Swim",
+  burrow: "Burrow",
+  glide: "Glide",
+  climb: "Climb",
+};
+
 export const languageTypes = {
   common: "Common",
   common_sign: "Common Sign",

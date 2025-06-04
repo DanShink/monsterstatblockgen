@@ -48,11 +48,11 @@ const MonsterStatblockContext = React.createContext();
  * @property {Array} skills Monster Skills
  * @property {Array} senses Monster Senses
  * @property {Array.<string>} languages Monster Languages
- * @property {Array} otherSpeeds Monster Other Speeds
+ * @property {Array} speeds Monster Speeds, all of them
  * @property {Array.<object>} features Monster Features
  * @property {Number} ap Action Points, usually 4
  * @property {Number} legendaryAp Legendary Action Points, number per PC, 0 if not a legendary monster
- * @property {Number} speed Walking speed
+ * @property {Number} defaultSpeed Default speed
  * @property {Number} check Prime + CM
  * @property {Number} saveDC 10 + Prime + CM
  * @property {Array.<Action>} actions
@@ -93,10 +93,10 @@ function useState() {
   const [mdr, setMdr] = React.useState(false); //mystical damage reduction
 
   React.useEffect(() => {
-    setPd(8 + parseInt(cm) + parseInt(agl) + parseInt(int) + parseInt(adBonus));
+    setPd(8 + parseInt(cm) + parseInt(agl) + parseInt(int) + parseInt(pdBonus));
   }, [cm, agl, int, adBonus]);
   React.useEffect(() => {
-    setAd(8 + parseInt(cm) + parseInt(mig) + parseInt(cha) + parseInt(pdBonus));
+    setAd(8 + parseInt(cm) + parseInt(mig) + parseInt(cha) + parseInt(adBonus));
   }, [cm, mig, cha, pdBonus]);
   React.useEffect(() => {
     setCm(Math.ceil(level / 2));
@@ -185,12 +185,13 @@ function useState() {
     truesight: 0,
   });
   const [languages, setLanguages] = React.useState([]); //array of strings
-  const [otherSpeeds, setOtherSpeeds] = React.useState({
-    fly: "0",
-    swim: "0",
-    glide: "0",
-    climb: "0",
-    burrow: "0",
+  const [speeds, setSpeeds] = React.useState({
+    ground: 0,
+    fly: 0,
+    swim: 0,
+    glide: 0,
+    climb: 0,
+    burrow: 0,
   });
 
   //features page
@@ -203,7 +204,7 @@ function useState() {
   //actions page
   const [ap, setAp] = React.useState(4);
   const [legendaryAp, setLegendaryAp] = React.useState(0);
-  const [speed, setSpeed] = React.useState(5);
+  const [defaultSpeed, setDefaultSpeed] = React.useState(5);
   const [check, setCheck] = React.useState(4);
   const [saveDC, setSaveDC] = React.useState(10);
   const [actions, setActions] = React.useState([]);
@@ -272,16 +273,16 @@ function useState() {
     setSenses,
     languages,
     setLanguages,
-    otherSpeeds,
-    setOtherSpeeds,
+    speeds,
+    setSpeeds,
     features,
     setFeatures,
     ap,
     setAp,
     legendaryAp,
     setLegendaryAp,
-    speed,
-    setSpeed,
+    defaultSpeed,
+    setDefaultSpeed,
     check,
     setCheck,
     saveDC,
