@@ -11,6 +11,14 @@ const MonsterStatblockContext = React.createContext();
  * @property {String} description
  * @property {String} failure
  * @property {Array.<Action>} enhancements
+ * @property {Number} id
+ */
+
+/**
+ * @typedef {Object} Feature
+ * @property {String} name
+ * @property {String} description
+ * @property {Number} id
  */
 
 /**
@@ -57,6 +65,7 @@ const MonsterStatblockContext = React.createContext();
  * @property {Number} saveDC 10 + Prime + CM
  * @property {Array.<Action>} actions
  * @property {Array.<Action>} reactions
+ * @property {Array.<Feature>} features
  */
 
 /**
@@ -195,7 +204,13 @@ function useState() {
   });
 
   //features page
-  const [features, setFeatures] = React.useState([]);
+  const [features, setFeatures] = React.useState([
+    {
+      name: "Example Name",
+      description: "Example Description",
+      id: Math.random(),
+    },
+  ]);
   /* Expected objects to be pushed: {
  	feature:"",
 	description:"", 

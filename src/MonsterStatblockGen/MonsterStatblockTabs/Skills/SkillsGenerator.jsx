@@ -7,7 +7,6 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import { useMonsterStatblockContext } from "../../MonsterStatblockContext";
 import {
   skillTypes,

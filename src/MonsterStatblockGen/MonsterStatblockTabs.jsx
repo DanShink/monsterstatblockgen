@@ -4,6 +4,7 @@ import Basics from "./MonsterStatblockTabs/Basics";
 import Stats from "./MonsterStatblockTabs/Stats";
 import Info from "./MonsterStatblockTabs/Info/Info";
 import Skills from "./MonsterStatblockTabs/Skills/Skills";
+import Features from "./MonsterStatblockTabs/Features";
 
 function MonsterStatBlockTabLogic({ step }) {
   switch (step) {
@@ -15,6 +16,8 @@ function MonsterStatBlockTabLogic({ step }) {
       return <Info />;
     case "Skills and Senses":
       return <Skills />;
+    case "Features":
+      return <Features />;
     default:
       return <div>Unrecognized Tab</div>;
   }
@@ -25,7 +28,7 @@ const tabs = [
   { label: "Stats" },
   { label: "Info" },
   { label: "Skills and Senses" },
-  { label: "Feature" },
+  { label: "Features" },
   { label: "Actions" },
   { label: "Reactions" },
   { label: "Import/Export" },
