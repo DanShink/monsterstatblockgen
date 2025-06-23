@@ -12,10 +12,9 @@ import {
   Checkbox,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import {
-  monsterTypes,
-  useMonsterStatblockContext,
-} from "../MonsterStatblockContext";
+import { useMonsterStatblockContext } from "../MonsterStatblockContext";
+
+import { monsterTypes } from "../constants";
 
 const size_options = [
   "Micro",

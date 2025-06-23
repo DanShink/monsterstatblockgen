@@ -4,19 +4,19 @@ import Box from "@mui/material/Box";
 import MonsterStatblockGen from "./MonsterStatblockGen/MonsterStatblockGen";
 
 export default function App() {
-	return (
-		<Container maxWidth="md">
-			<Box
-				sx={{ my: 4 }}
-				style={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-				}}
-			>
-				<MonsterStatblockGen />
-			</Box>
-		</Container>
-	);
+  return (
+    <Container maxWidth="lg">
+      <Box
+        sx={{ my: 4 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <MonsterStatblockGen />
+      </Box>
+    </Container>
+  );
 }

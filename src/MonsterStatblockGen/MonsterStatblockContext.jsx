@@ -1,20 +1,17 @@
 import React from "react";
+import { monsterTypes, masteryLevels } from "./constants";
 
 const MonsterStatblockContext = React.createContext();
 
 /**
  * @typedef {Object} Action
+ * @property {String} type
  * @property {Number} apcost
  * @property {String} name
  * @property {String} description
  * @property {String} failure
+ * @property {Array.<Action>} enhancements
  */
-
-export const monsterTypes = {
-  normal: "Normal",
-  apex: "Apex",
-  legendary: "Legendary",
-};
 
 /**
  * @typedef {Object} MonsterStatBlockState
@@ -23,7 +20,7 @@ export const monsterTypes = {
  * @property {String} type Type of monster
  * @property {Number} level Monster Level
  * @property {String} category Category of monster
- * @property {String} monsterStatus Is the monster normal, apex, or legendary?
+ * @property {monsterTypes} monsterStatus Is the monster normal, apex, or legendary?
  * @property {Number} hp Hit points of the monster
  * @property {Number} mig Might of the monster
  * @property {Number} agl Agility of the monster
@@ -51,11 +48,11 @@ export const monsterTypes = {
  * @property {Array} skills Monster Skills
  * @property {Array} senses Monster Senses
  * @property {Array.<string>} languages Monster Languages
- * @property {Array} otherSpeeds Monster Other Speeds
+ * @property {Array} speeds Monster Speeds, all of them
  * @property {Array.<object>} features Monster Features
  * @property {Number} ap Action Points, usually 4
  * @property {Number} legendaryAp Legendary Action Points, number per PC, 0 if not a legendary monster
- * @property {Number} speed Walking speed
+ * @property {Number} defaultSpeed Default speed
  * @property {Number} check Prime + CM
  * @property {Number} saveDC 10 + Prime + CM
  * @property {Array.<Action>} actions
@@ -96,10 +93,10 @@ function useState() {
   const [mdr, setMdr] = React.useState(false); //mystical damage reduction
 
   React.useEffect(() => {
-    setPd(8 + parseInt(cm) + parseInt(agl) + parseInt(int) + parseInt(adBonus));
+    setPd(8 + parseInt(cm) + parseInt(agl) + parseInt(int) + parseInt(pdBonus));
   }, [cm, agl, int, adBonus]);
   React.useEffect(() => {
-    setAd(8 + parseInt(cm) + parseInt(mig) + parseInt(cha) + parseInt(pdBonus));
+    setAd(8 + parseInt(cm) + parseInt(mig) + parseInt(cha) + parseInt(adBonus));
   }, [cm, mig, cha, pdBonus]);
   React.useEffect(() => {
     setCm(Math.ceil(level / 2));
@@ -109,62 +106,115 @@ function useState() {
   }, [mig, agl, int, cha]);
   //info page
   const [resistances, setResistances] = React.useState({
-    bludgeoning: "0",
-    piercing: "0",
-    slashing: "0",
-    fire: "0",
-    cold: "0",
-    lightning: "0",
-    poison: "0",
-    corrosion: "0",
-    radiant: "0",
-    umbral: "0",
-    sonic: "0",
-    psychic: "0",
+    bludgeoning: 0,
+    piercing: 0,
+    slashing: 0,
+    fire: 0,
+    cold: 0,
+    lightning: 0,
+    poison: 0,
+    corrosion: 0,
+    radiant: 0,
+    umbral: 0,
+    sonic: 0,
+    psychic: 0,
   });
   const [vulnerabilities, setVulnerabilities] = React.useState({
-    bludgeoning: "0",
-    piercing: "0",
-    slashing: "0",
-    fire: "0",
-    cold: "0",
-    lightning: "0",
-    poison: "0",
-    corrosion: "0",
-    radiant: "0",
-    umbral: "0",
-    sonic: "0",
-    psychic: "0",
+    bludgeoning: 0,
+    piercing: 0,
+    slashing: 0,
+    fire: 0,
+    cold: 0,
+    lightning: 0,
+    poison: 0,
+    corrosion: 0,
+    radiant: 0,
+    umbral: 0,
+    sonic: 0,
+    psychic: 0,
   });
   const [immunities, setImmunities] = React.useState([]); //array of strings
-  const [conditionResistances, setConditionResistances] = React.useState([]); //array of strings
-  const [conditionImmunities, setConditionImmunities] = React.useState([]); //array of strings
-  const [conditionVulnerabilities, setConditionVulnerabilities] =
-    React.useState([]); //array of strings
-  const [skills, setSkills] = React.useState([]);
-  /* Expected objects to be pushed: {
-	skill: "",
-	value: 0,
-  }*/
-  const [senses, setSenses] = React.useState([]);
-  /* Expected objects to be pushed: {
-	sense: "",
-	value: 0,
-  }*/
+  const [conditions, setConditions] = React.useState({
+    blinded: "None",
+    burning: "None",
+    charmed: "None",
+    dazed: "None",
+    deafened: "None",
+    disoriented: "None",
+    doomed: "None",
+    exhaustion: "None",
+    exposed: "None",
+    frightened: "None",
+    hindered: "None",
+    immobilized: "None",
+    impaired: "None",
+    incapacitated: "None",
+    intimiated: "None",
+    invisible: "None",
+    paralyzed: "None",
+    petrified: "None",
+    poisoned: "None",
+    restrained: "None",
+    slowed: "None",
+    stunned: "None",
+    surprised: "None",
+    taunted: "None",
+    terrified: "None",
+    tethered: "None",
+    unconscious: "None",
+    weakened: "None",
+  });
+  const [skills, setSkills] = React.useState({
+    awareness: masteryLevels.na, //Prime
+    athletics: masteryLevels.na, //Might
+    intimidation: masteryLevels.na, //Might
+    acrobatics: masteryLevels.na, //Agility
+    trickery: masteryLevels.na, //Agility
+    stealth: masteryLevels.na, //Agility
+    animal: masteryLevels.na, //Charisma
+    inluence: masteryLevels.na, //Charisma
+    insight: masteryLevels.na, //Charisma
+    investigation: masteryLevels.na, //Intelligence
+    medicine: masteryLevels.na, //Medicine
+    survival: masteryLevels.na, //Survival
+  });
+  const [senses, setSenses] = React.useState({
+    darkvision: 0,
+    tremorsense: 0,
+    blindsight: 0,
+    truesight: 0,
+  });
   const [languages, setLanguages] = React.useState([]); //array of strings
-  const [otherSpeeds, setOtherSpeeds] = React.useState([]);
-  /* Expected objects to be pushed: {
-	type:"",
-	distance:0,
-  }*/
+  const [speeds, setSpeeds] = React.useState({
+    ground: 0,
+    fly: 0,
+    swim: 0,
+    glide: 0,
+    climb: 0,
+    burrow: 0,
+  });
+
   //features page
   const [features, setFeatures] = React.useState([]);
   /* Expected objects to be pushed: {
  	feature:"",
 	description:"", 
   }
-
   */
+  //actions page
+  const [ap, setAp] = React.useState(4);
+  const [legendaryAp, setLegendaryAp] = React.useState(0);
+  const [defaultSpeed, setDefaultSpeed] = React.useState(5);
+  const [check, setCheck] = React.useState(4);
+  const [saveDC, setSaveDC] = React.useState(10);
+  const [actions, setActions] = React.useState([]);
+  const [reactions, setReactions] = React.useState([]);
+  React.useEffect(() => {
+    setCheck(parseInt(prime) + parseInt(cm));
+  }, [prime, cm]);
+  React.useEffect(() => {
+    setSaveDC(10 + parseInt(prime) + parseInt(cm));
+  }, [prime, cm]);
 
   return {
     name,
@@ -211,6 +261,42 @@ function useState() {
     setPdBonus,
     resistances,
     setResistances,
+    vulnerabilities,
+    setVulnerabilities,
+    immunities,
+    setImmunities,
+    conditions,
+    setConditions,
+    skills,
+    setSkills,
+    senses,
+    setSenses,
+    languages,
+    setLanguages,
+    speeds,
+    setSpeeds,
+    features,
+    setFeatures,
+    ap,
+    setAp,
+    legendaryAp,
+    setLegendaryAp,
+    defaultSpeed,
+    setDefaultSpeed,
+    check,
+    setCheck,
+    saveDC,
+    setSaveDC,
+    actions,
+    setActions,
+    reactions,
+    setReactions,
+    pdr,
+    setPdr,
+    edr,
+    setEdr,
+    mdr,
+    setMdr,
   };
 }
 
