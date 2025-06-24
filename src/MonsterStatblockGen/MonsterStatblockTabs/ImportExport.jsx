@@ -6,6 +6,7 @@ import {
 	Document,
 	StyleSheet,
 	PDFDownloadLink,
+	PDFViewer,
 	Font,
 } from "@react-pdf/renderer";
 import { useMonsterStatblockContext } from "../MonsterStatblockContext";
@@ -232,6 +233,14 @@ export default function ImportAndExport() {
 	return (
 		<React.Fragment>
 			<div>Import/Export Statblocks</div>
+			<PDFViewer
+				style={{
+					height: "100vh",
+					width: "100%",
+				}}
+			>
+				<TestBlockPDF />
+			</PDFViewer>
 			<PDFDownloadLink
 				document={<TestBlockPDF />}
 				fileName={`${name || "monster"}-statblock.pdf`}
