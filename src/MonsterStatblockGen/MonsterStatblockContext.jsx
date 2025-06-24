@@ -53,10 +53,10 @@ const MonsterStatblockContext = React.createContext();
  * @property {Array.<string>} conditionImmunities Monster Condition Immunities
  * @property {Array.<string>} conditionResistances Monster Condition Resistances
  * @property {Array.<string>} conditionVulnerabilities Monster Condition Vulnerabilities
- * @property {Array} skills Monster Skills
- * @property {Array} senses Monster Senses
+ * @property {Object} skills Monster Skills
+ * @property {Object} senses Monster Senses
  * @property {Array.<string>} languages Monster Languages
- * @property {Array} speeds Monster Speeds, all of them
+ * @property {Object} speeds Monster Speeds, all of them
  * @property {Number} ap Action Points, usually 4
  * @property {Number} legendaryAp Legendary Action Points, number per PC, 0 if not a legendary monster
  * @property {Number} defaultSpeed Default speed
