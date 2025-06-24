@@ -11,7 +11,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import { useMonsterStatblockContext } from "../MonsterStatblockContext";
 
 import { monsterTypes } from "../constants";

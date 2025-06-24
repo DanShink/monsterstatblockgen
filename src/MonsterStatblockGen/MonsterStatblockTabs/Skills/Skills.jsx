@@ -7,7 +7,6 @@ import {
   Checkbox,
   InputLabel,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import { useMonsterStatblockContext } from "../../MonsterStatblockContext";
 import { skillTypes, masteryTypes, languageTypes } from "../../constants";
 import SkillsGenerator from "./SkillsGenerator";
